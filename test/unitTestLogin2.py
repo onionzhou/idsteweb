@@ -36,7 +36,8 @@ class TestLogin(unittest.TestCase):
         # driver.find_element(By.CLASS_NAME,'el-icon-back').click()
         self.driver.find_element(By.XPATH, "//i[@class='el-icon-back']").click()
 
-        Log.logger.info('test etst etst ')
+        Log.logger.info('test test etst xxxxx fffuuc')
+
 
 
 if __name__ == "__main__":
