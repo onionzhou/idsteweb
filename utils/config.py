@@ -8,7 +8,7 @@ DRIVER_PATH = os.path.join(BASE_PATH, 'drivers')
 LOG_PATH = os.path.join(BASE_PATH, 'log')
 REPORT_PATH = os.path.join(BASE_PATH, 'report')
 
-class config():
+class Config():
     def __init__(self,config=CONFIG_FILE):
         self.config = YamlRead(config).data()
 
@@ -17,7 +17,7 @@ class config():
 
 if __name__ == '__main__':
     print(DATA_PATH)
-    url = config().get('TEST4')
+    url = Config().get('TEST4')
     print(url)
     print(DRIVER_PATH +'\cc')
 

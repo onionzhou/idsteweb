@@ -7,6 +7,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from utils.config import Config,DRIVER_PATH
+from utils import Log
 
 class TestLogin(unittest.TestCase):
     #url = 'https://cloud.idste.org/'
@@ -35,6 +36,7 @@ class TestLogin(unittest.TestCase):
         # driver.find_element(By.CLASS_NAME,'el-icon-back').click()
         self.driver.find_element(By.XPATH, "//i[@class='el-icon-back']").click()
 
+        Log.logger.info('test etst etst ')
 
 
 if __name__ == "__main__":
