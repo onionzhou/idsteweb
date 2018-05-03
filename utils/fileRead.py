@@ -81,7 +81,9 @@ def test():
     '''
 if __name__ == '__main__':
     e = 'F:\python\idsteweb\data\\testdata.xlsx'
-    print(ExcelRead(e).data())
+    file =ExcelRead(e,title_line=True).data()
+    print(file)
+    print(int(file[0]['phone']))
 
 
 
