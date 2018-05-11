@@ -219,9 +219,9 @@ function showOutput(id, name) {
 
 <div class='heading'>
 <h1>idste interface login test</h1>
-<p class='attribute'><strong>Start Time:</strong> 2018-05-11 13:34:18</p>
-<p class='attribute'><strong>Duration:</strong> 0:00:00.002000</p>
-<p class='attribute'><strong>Status:</strong> Error 1</p>
+<p class='attribute'><strong>Start Time:</strong> 2018-05-11 14:20:52</p>
+<p class='attribute'><strong>Duration:</strong> 0:00:00.032002</p>
+<p class='attribute'><strong>Status:</strong> Pass 1 Error 1</p>
 
 <p class='description'>interface html report</p>
 </div>
@@ -264,38 +264,39 @@ function showOutput(id, name) {
 
 <tr class='errorClass'>
     <td>TestiDsteLogin</td>
+    <td>2</td>
     <td>1</td>
     <td>0</td>
-    <td>0</td>
     <td>1</td>
-    <td><a href="javascript:showClassDetail('c1',1)">Detail</a></td>
+    <td><a href="javascript:showClassDetail('c1',2)">Detail</a></td>
 </tr>
 
-<tr id='ft1.1' class='none'>
-    <td class='errorCase'><div class='testcase'>test_login_http</div></td>
+<tr id='pt1.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>test_login_http</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
+
+<tr id='ft1.2' class='none'>
+    <td class='errorCase'><div class='testcase'>test_login_http1</div></td>
     <td colspan='5' align='center'>
 
     <!--css div popup start-->
-    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.1')" >
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.2')" >
         error</a>
 
-    <div id='div_ft1.1' class="popup_window">
+    <div id='div_ft1.2' class="popup_window">
         <div style='text-align: right; color:red;cursor:pointer'>
-        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.1').style.display = 'none' " >
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.2').style.display = 'none' " >
            [x]</a>
         </div>
         <pre>
         
-ft1.1: Traceback (most recent call last):
-  File "F:/python/idsteweb/testcase/interface/test_idste_login.py", line 13, in setUp
-    self.client = HttpClient(url =self.url)
-  File "F:\python\idsteweb\utils\client.py", line 23, in __init__
-    self.setHeaders(headers)
-  File "F:\python\idsteweb\utils\client.py", line 27, in setHeaders
-    self.session.headers.update(headers)
-  File "C:\Python35\lib\_collections_abc.py", line 780, in update
-    for key, value in other:
-TypeError: 'NoneType' object is not iterable
+ft1.2: Traceback (most recent call last):
+  File "F:/python/idsteweb/testcase/interface/test_idste_login.py", line 25, in test_login_http1
+    assertHTTPCode(res,404)
+  File "F:\python\idsteweb\utils\assertion.py", line 8, in assertHTTPCode
+    if res_code not in code_list:
+TypeError: argument of type 'int' is not iterable
 
 
         </pre>
@@ -307,8 +308,8 @@ TypeError: 'NoneType' object is not iterable
 
 <tr id='total_row'>
     <td>Total</td>
-    <td>1</td>
-    <td class="text text-success">0</td>
+    <td>2</td>
+    <td class="text text-success">1</td>
     <td class="text text-danger">0</td>
     <td class="text text-warning">1</td>
     <td>&nbsp;</td>
@@ -334,7 +335,7 @@ var data = [
 		labelFontSize: '16'
 	},
 	{
-		value : 0,
+		value : 1,
 		color : "#d6e9c6",
 		label : "Pass",
 		labelColor: 'white',

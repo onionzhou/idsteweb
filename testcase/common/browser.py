@@ -2,12 +2,10 @@ from  selenium import webdriver
 import os
 from utils.config import DRIVER_PATH,REPORT_PATH
 import time
-
 #browser drive
 CHROMEDRIVER_PATH =DRIVER_PATH + '\chromedriver.exe'
 PHANTOMJSDRIVER_PATH = DRIVER_PATH + '\phantomjs.exe'
 FIREFOXDRIVER_PATH = DRIVER_PATH +'\geckodriver.exe'
-#print(FIREFOXDRIVER_PATH)
 
 TYPES ={'chrome':webdriver.Chrome,
         'firefox':webdriver.Firefox,
@@ -31,29 +29,22 @@ class Browser(object):
         self.driver = None
 
     def get(self,url,maximize_window =True,time_to_implicitly_wait =20):
-
         self.driver = self.browser(executable_path=EXE_PATH[self._type])
         self.driver.get(url)
         if maximize_window:
             self.driver.maximize_window()
         #这里可以增加显示等待功能，以后补充
         self.driver.implicitly_wait(time_to_implicitly_wait)
-
         return self
-    def save_screenshot(self,screen_name = 'screen_name'):
-        day =time.strftime('%Y-%m-%d', time.localtime(time.time()))
-        #dir
+    def save_screen_shot(self, name ='screen_xx'):
+        day =time.strftime('%Y%m%d', time.localtime(time.time()))
         screenshot_path = REPORT_PATH +'\screenshot_%s' %day
-        screen_time = time.strftime('%H:%M:%S', time.localtime(time.time()))
-
+        #file_name = '%s_%s' %(screen_name,screen_time)
         if not os.path.exists(screenshot_path):
             os.makedirs(screenshot_path)
-
-        screenshot = self.driver.save_screenshot(screenshot_path
-                                                 + '\\%s_%s.png'
-                                                 % (screen_name, screen_time))
-        return  screenshot
-
+        tm = time.strftime('%H-%M-%S', time.localtime(time.time()))  # '%H:%M:%s' 有问题
+        screenshot = self.driver.save_screenshot(screenshot_path + '\\%s_%s.png' % (name, tm))
+        return screenshot
 
     def quit(self):
         self.driver.quit()
@@ -61,13 +52,8 @@ class Browser(object):
     def close(self):
         self.driver.close()
 
-
-
 if __name__ == '__main__':
-    print('only support [ %s' % ' '.join(TYPES.keys()), ']')
-    t = time.strftime('%Y-%m-%d',time.localtime(time.time()))
-    tm = time.strftime('%H:%M:%S', time.localtime(time.time()))
-    print (t)
-    print(tm)
-    path = REPORT_PATH +'\\xxx_%s.png' %t
-    print(path)
+    b = Browser(browser_type='chrome').get('http://192.168.1.113')
+    b.save_screen_shot()
+    time.sleep(3)
+    b.quit()

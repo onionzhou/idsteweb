@@ -1,6 +1,6 @@
-URL: https://cloud.idste.org/
+URL: http://192.168.3.116/
 log:
-    file_name : test.log
+    file_name : idstetest.log
     backup : 5
     console_level: WARNING
     file_level: DEBUG

@@ -33,6 +33,8 @@ class Logger():
             console_handler.setFormatter(self.formatter)
             console_handler.setLevel(self.console_output_level)
             self.logger.addHandler(console_handler)
+            # recreate a log file dayily ,keep up to 'back_count' ,
+            #back_count default 5
             file_handler = TimedRotatingFileHandler(filename=LOG_PATH + self.log_file_name,
                                                     when='D',
                                                     interval=1,

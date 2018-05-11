@@ -14,8 +14,10 @@ class YamlRead():
             with open(self.yaml_file,'rb') as f:
                self._data = list(yaml.safe_load_all(f))
         return  self._data
+
 class SheetTypeError():
     pass
+
 class ExcelRead():
     '''read excel file
         return list
