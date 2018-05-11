@@ -1,5 +1,7 @@
+*.log
+*.png
 .idea
-
-*.iml
+*.xlsx
+*.pyc
+*.exe
 __pycache__
-drivers/*
