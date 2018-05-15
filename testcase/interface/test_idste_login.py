@@ -23,13 +23,18 @@ class TestiDsteLogin(unittest.TestCase):
         logger.debug(res.text)
         #self.assertEqual(200,res.status_code)
         assertHTTPCode(res,404)
-if __name__ == '__main__':
-    report = REPORT_PATH +'\\interfacereport.html'
+
+def test_main():
+    report = REPORT_PATH + '\\interfacereport.html'
     suit = unittest.TestSuite()
     suit.addTest(TestiDsteLogin('test_login_http'))
     suit.addTest(TestiDsteLogin('test_login_http1'))
 
-    with open(report,'wb') as f:
-        runner = HTMLTestRunner(f,verbosity=2,title='idste interface login test',
-                       description='interface html report')
+    with open(report, 'wb') as f:
+        runner = HTMLTestRunner(f, verbosity=2, title='idste interface login test',
+                                description='interface html report')
         runner.run(suit)
+
+if __name__ == '__main__':
+    HttpClient(url='https://192.168.1.113/').send()
+    print()

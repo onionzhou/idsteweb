@@ -17,10 +17,6 @@ class TestLogin(unittest.TestCase):
         datas = ExcelRead(self.excelfile).data
         pass
 
-
-
-
-
 if __name__ == "__main__":
     #unittest.main()
     excelfile = DATA_PATH + '\\testdata.xlsx'
