@@ -17,8 +17,7 @@ class HttpClient(object):
     >>>>> HTTPClient('http://www.xxx.com').send()
     <Response [200]>
     '''
-
-    def __init__(self, url, method='GET', headers=None, cookies=None):
+    def __init__(self, url, method='POST', headers=None, cookies=None):
         self.url = url
         self.method = method.upper()
         self.session = requests.session()

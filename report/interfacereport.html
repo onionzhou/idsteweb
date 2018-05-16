@@ -219,8 +219,8 @@ function showOutput(id, name) {
 
 <div class='heading'>
 <h1>idste interface login test</h1>
-<p class='attribute'><strong>Start Time:</strong> 2018-05-11 14:20:52</p>
-<p class='attribute'><strong>Duration:</strong> 0:00:00.032002</p>
+<p class='attribute'><strong>Start Time:</strong> 2018-05-15 15:53:36</p>
+<p class='attribute'><strong>Duration:</strong> 0:00:00.063008</p>
 <p class='attribute'><strong>Status:</strong> Pass 1 Error 1</p>
 
 <p class='description'>interface html report</p>
@@ -273,7 +273,28 @@ function showOutput(id, name) {
 
 <tr id='pt1.1' class='hiddenRow'>
     <td class='none'><div class='testcase'>test_login_http</div></td>
-    <td colspan='5' align='center'>pass</td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_pt1.1')" >
+        pass</a>
+
+    <div id='div_pt1.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_pt1.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+pt1.1: C:\Python35\lib\site-packages\urllib3\connectionpool.py:858: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  InsecureRequestWarning)
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
 </tr>
 
 <tr id='ft1.2' class='none'>
@@ -291,8 +312,10 @@ function showOutput(id, name) {
         </div>
         <pre>
         
-ft1.2: Traceback (most recent call last):
-  File "F:/python/idsteweb/testcase/interface/test_idste_login.py", line 25, in test_login_http1
+ft1.2: C:\Python35\lib\site-packages\urllib3\connectionpool.py:858: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  InsecureRequestWarning)
+Traceback (most recent call last):
+  File "F:/python/idsteweb/testcase/interface/test_idste_login.py", line 33, in test_login_http1
     assertHTTPCode(res,404)
   File "F:\python\idsteweb\utils\assertion.py", line 8, in assertHTTPCode
     if res_code not in code_list:

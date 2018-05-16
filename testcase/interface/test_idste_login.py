@@ -1,24 +1,26 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import unittest
-from utils.config import Config,REPORT_PATH
+from utils.config import REPORT_PATH
 from utils.client import HttpClient
 from utils.Log import logger
 from utils.HTMLTestRunner import HTMLTestRunner
 from utils.assertion import assertHTTPCode
+from testcase.interface.interface_param.interfaceParam import InterfaceURL
+from testcase.interface.interface_param.interfaceParam import InterfaceData
 
 class TestiDsteLogin(unittest.TestCase):
-    url = Config().get('URL')
+
     def setUp(self):
-        self.client = HttpClient(url =self.url)
+        self.client = HttpClient(url =InterfaceURL.login_url)
     def tearDown(self):
         pass
     def test_login_http(self):
-        res = self.client.send()
+        res = self.client.send(params=InterfaceData.login_data)
         logger.debug(res.text)
         #self.assertEqual(200,res.status_code)
         assertHTTPCode(res)
-    def test_login_http1(self):
+    def test_login_http_404(self):
         res = self.client.send()
         logger.debug(res.text)
         #self.assertEqual(200,res.status_code)
@@ -36,5 +38,4 @@ def test_main():
         runner.run(suit)
 
 if __name__ == '__main__':
-    HttpClient(url='https://192.168.1.113/').send()
-    print()
+    test_main()
