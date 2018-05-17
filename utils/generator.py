@@ -58,8 +58,11 @@ def factory_choice_generator(values):
             yield random.choice(my_list)
     return choice_generator
 
+def random_num():
+    return fake.random_digit()
 
-if __name__ == '__main__':
+
+def test():
     print(random_phone_number())
     print(random_name())
     print(random_address())
@@ -74,3 +77,18 @@ if __name__ == '__main__':
     choice_gen = factory_choice_generator(choices)()
     for i in range(5):
         print(next(choice_gen))
+def rand_num(max = 5):
+    list =[]
+    for i in range(0,max):
+        list.append(str(random.randint(0,9)))
+    return ''.join(list)
+
+if __name__ == '__main__':
+    #print(random_name())
+    #print(random_str(6,8).lower())
+    #print(random_num())
+    #print(random.randint(1,10))
+    print(rand_num())
+
+
+
