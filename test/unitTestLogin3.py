@@ -8,7 +8,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from utils.config import Config,DRIVER_PATH,DATA_PATH
 from utils import Log
-from utils.fileRead import ExcelRead
+from utils.fileOperation import ExcelRead
 
 class TestLogin(unittest.TestCase):
     #url = 'https://cloud.idste.org/'

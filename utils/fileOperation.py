@@ -1,6 +1,7 @@
 import yaml
 import os
-import xlrd
+import xlrd,xlwt
+from xlutils.copy import copy
 class YamlRead():
     def __init__(self,yaml_file):
         if os.path.exists(yaml_file):
@@ -57,30 +58,59 @@ class ExcelRead():
                 self._data.append(sheetfile.row_values(i))
         return self._data
 
+row0 =['User_Desc','User_Sn','IcCard','User_Type','User_Expiry','Phone',
+           'IC_Status','Dpm_Name','User_Name','New_Pass_Word','Priority',
+           'privilege','usbkey',
+           ]
+class ExcelWriteError():
+    pass
+class ExcelWrite():
+    '''
+    write excel file (.xls)
+    row0 title
+    row1  data
+    -----------------------------------------
+    name     user_name  password   phone
+     xiao    test1      test1       13982000043
+     tesr2   est2       test2      13982000044
+     -----------------------------------------
+    '''
+    def __init__(self,execlfile,sheet_name='sheet0',row_data=[],column_data=[]):
+
+        if execlfile != None:
+            self.excelfile = execlfile
+        else:
+            raise ExcelWriteError('execlfile is not name ')
+        if row_data != None:
+            self._row_data = row_data
+        else:
+            raise ExcelWriteError('row_data is null!')
+        if column_data != None:
+            self._col_data =column_data
+        else:
+            raise ExcelWriteError('colum_data is null!')
+
+        if  os.path.exists(execlfile):
+            self.file = copy(xlrd.open_workbook(execlfile))
+            self.sheet=self.file.get_sheet(sheet_name)
+        else:
+            self.file = xlwt.Workbook(encoding='utf-8')
+            self.sheet =self.file.add_sheet(sheet_name,cell_overwrite_ok=True)
+    '''
+    一行一行的插入数据
+    '''
+    def write(self,row_num = 0):
+        for c in range(0,len(self._col_data)):
+            for r in range(row_num,len(self._row_data)):
+                self.sheet.write(c,r,self._row_data[r])
+                #print(str(c) +'xxxx'+ str(r) +'xxxxx'+ str(self._row_data[r]))
+    def save(self):
+        self.file.save(self.excelfile)
+
 class CsvRead():
     pass
 
-def test():
-    e= 'F:\python\idsteweb\data\\testdata.xlsx'
-    file = xlrd.open_workbook(e)
-    #file.sheet_by_index()
-    sheetfile = file.sheet_by_name('Sheet1')
-    title = sheetfile.row_values(0)
-    data =[]
-    for i in range(1,sheetfile.nrows):
-        file =dict(zip(title,sheetfile.row_values(i)))
-        data.append(file)
-    print(data)
 
-    '''for sheet in file.sheets():
-        print(sheet.name)
-    for i in range(sheetfile.nrows): #所有行 sheetfile.nrows
-        row = sheetfile.row_values(i) # 打印每行的值
-        print(row)
-        for cell in row:
-            print(cell) #打印每个表格的值
-    print(sheetfile.row_values(0))
-    '''
 if __name__ == '__main__':
     e = 'F:\python\idsteweb\data\\testdata.xlsx'
     file =ExcelRead(e,title_line=True).data()

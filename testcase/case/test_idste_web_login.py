@@ -4,7 +4,7 @@ import unittest
 from testcase.common.browser import Browser
 from utils.config import Config,DRIVER_PATH,DATA_PATH
 from utils import Log
-from utils.fileRead import ExcelRead
+from utils.fileOperation import ExcelRead
 
 class TestLogin(unittest.TestCase):
     url = Config().get('URL')

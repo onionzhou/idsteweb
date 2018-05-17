@@ -8,7 +8,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from utils.config import Config, DRIVER_PATH, DATA_PATH, REPORT_PATH
 from utils import Log
-from utils.fileRead import ExcelRead
+from utils.fileOperation import ExcelRead
 from utils.HTMLTestRunner import HTMLTestRunner
 
 
