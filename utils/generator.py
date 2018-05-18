@@ -61,6 +61,27 @@ def factory_choice_generator(values):
 def random_num():
     return fake.random_digit()
 
+def rand_num(max = 5):
+    list =[]
+    for i in range(0,max):
+        list.append(str(random.randint(0,9)))
+    return ''.join(list)
+
+def rand_num_int(min=0,max=1):
+    return random.randint(min,max)
+def random_dpm_name():
+    '''
+      返回部门名称
+    '''
+    choice = ['组织部','人事处','档案部','科研处','财务处','学生处','科研处','保卫处']
+    choice_gen =factory_choice_generator(choice)()
+    return next(choice_gen)
+
+def random_usbkey(max = 6):
+    list =['3000']
+    for i in range(0,max):
+        list.append(str(random.randint(0,9)))
+    return ''.join(list)
 
 def test():
     print(random_phone_number())
@@ -72,23 +93,14 @@ def test():
     id_gen = factory_generate_ids(starting_id=0, increment=2)()
     for i in range(5):
         print(next(id_gen))
-
     choices = ['John', 'Sam', 'Lily', 'Rose']
     choice_gen = factory_choice_generator(choices)()
     for i in range(5):
         print(next(choice_gen))
-def rand_num(max = 5):
-    list =[]
-    for i in range(0,max):
-        list.append(str(random.randint(0,9)))
-    return ''.join(list)
+
 
 if __name__ == '__main__':
-    #print(random_name())
-    #print(random_str(6,8).lower())
-    #print(random_num())
-    #print(random.randint(1,10))
-    print(rand_num())
+    pass
 
 
 

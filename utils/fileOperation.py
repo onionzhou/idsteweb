@@ -75,20 +75,20 @@ class ExcelWrite():
      tesr2   est2       test2      13982000044
      -----------------------------------------
     '''
-    def __init__(self,execlfile,sheet_name='sheet0',row_data=[],column_data=[]):
+    def __init__(self,execlfile,sheet_name='sheet0'):
 
         if execlfile != None:
             self.excelfile = execlfile
         else:
             raise ExcelWriteError('execlfile is not name ')
-        if row_data != None:
-            self._row_data = row_data
-        else:
-            raise ExcelWriteError('row_data is null!')
-        if column_data != None:
-            self._col_data =column_data
-        else:
-            raise ExcelWriteError('colum_data is null!')
+        #if row_data != None:
+        #    self._row_data = row_data
+        #else:
+        #    raise ExcelWriteError('row_data is null!')
+        #if column_len != None:
+        #    self._col_data_len =column_len
+        #else:
+        #    raise ExcelWriteError('colum_data is null!')
 
         if  os.path.exists(execlfile):
             self.file = copy(xlrd.open_workbook(execlfile))
@@ -98,12 +98,13 @@ class ExcelWrite():
             self.sheet =self.file.add_sheet(sheet_name,cell_overwrite_ok=True)
     '''
     一行一行的插入数据
+    :row_num  写几行
+    :from_row_num 从第几行写
     '''
-    def write(self,row_num = 0):
-        for c in range(0,len(self._col_data)):
-            for r in range(row_num,len(self._row_data)):
-                self.sheet.write(c,r,self._row_data[r])
-                #print(str(c) +'xxxx'+ str(r) +'xxxxx'+ str(self._row_data[r]))
+    def write(self,row,col,data):
+        self.sheet.write(row,col,data)
+            #print('c == '+ str(c) + 'r ==' +str(r) + 'row_data[r]' + str(row_data[r]))
+
     def save(self):
         self.file.save(self.excelfile)
 

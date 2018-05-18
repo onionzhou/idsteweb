@@ -110,15 +110,7 @@ def modify_xls():
         wb.write(0,i,row0[i])
     fw.save('1.xls')
 from utils.fileOperation import ExcelWrite
-def writeTest():
-    row0 = ['User_Desc', 'User_Sn', 'IcCard', 'User_Type', 'User_Expiry', 'Phone',
-            'IC_Status', 'Dpm_Name', 'User_Name', 'New_Pass_Word', 'Priority',
-            'privilege', 'usbkey','xxx'
-            ]
-    test ={}
-    f = ExcelWrite('1.xls','sheet0',row0,str(2))
-    f.write()
-    f.save()
+
 def testxxxx():
     e= 'F:\python\idsteweb\data\\testdata.xlsx'
     file = xlrd.open_workbook(e)
@@ -140,7 +132,61 @@ def testxxxx():
             print(cell) #打印每个表格的值
     print(sheetfile.row_values(0))
     '''
-if __name__ =='__main__':
-    writeTest()
-    #modify_xls()
+from utils import generator
+def num_generator():
+    print(generator.rand_num(10)) #学号
+    print(generator.rand_num(10))  # 卡号
+    print(generator.random_name())#姓名
+    print(generator.random_str(6,8).lower()) #登陆名和密码
+    print(generator.random_phone_number()) #电话号码
+    print(generator.random_dpm_name()) #部门
+    print(generator.rand_num()) #  IC卡状态 生成 0 1
+    print(generator.rand_num(1,3)) #用户类型生成 123
+    print(generator.rand_num(100)) #优先级  0 - 100
+    print(generator.random_usbkey())#usbkey
+     #授权管理
 
+
+from utils.fileOperation import ExcelWrite
+
+
+def random_user_add(filename,entry):
+    title0 = ['User_Desc', 'User_Sn', 'IcCard', 'User_Type', 'User_Expiry', 'Phone',
+            'IC_Status', 'Dpm_Name', 'User_Name', 'New_Pass_Word', 'Priority',
+            'privilege', 'usbkey'
+            ]
+    user = []
+    user.append(title0)
+    #data generation
+    for i in range(0,entry):
+        list = []
+        list.append(generator.random_name()) #姓名
+        list.append(generator.rand_num(10)) #学工号
+        list.append(generator.rand_num(10)) #卡号
+        list.append(generator.rand_num_int(1,3)) #用户类型
+        list.append(None)  #User_Expiry
+        list.append(generator.random_phone_number()) #电话号码
+        list.append(generator.rand_num_int(0,1)) # ic 卡状态
+        list.append(generator.random_dpm_name()) #部门名称
+        admin =generator.random_str(6,8).lower()
+        list.append(admin)#登陆名 和密码
+        list.append(admin)
+        list.append(generator.rand_num_int(1,100)) #优先级
+        list.append(None) #privilege
+        list.append(generator.random_usbkey())#usbkey
+        user.append(list)
+
+    #data wirte
+    f = ExcelWrite(filename, 'sheet0')
+    for  i in range(len(user)):
+        for j in range(len(user[i])):
+            f.write_test(i,j,user[i][j])
+    f.save()
+
+
+
+
+
+if __name__ =='__main__':
+   # writeTest()
+    random_user_add()

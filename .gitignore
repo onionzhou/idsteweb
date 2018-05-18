@@ -2,6 +2,8 @@
 *.png
 .idea
 *.xlsx
+*.xls
 *.pyc
 *.exe
+data/*
 __pycache__
