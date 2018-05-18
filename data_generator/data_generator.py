@@ -22,7 +22,7 @@ def increase_usr_data(filename,entry):
         list.append(generator.rand_num(10)) #学工号
         list.append(generator.rand_num(10)) #卡号
         list.append(generator.rand_num_int(1,3)) #用户类型
-        list.append(None)  #User_Expiry
+        list.append(generator.random_date_generation())  #User_Expiry
         list.append(generator.random_phone_number()) #电话号码
         list.append(generator.rand_num_int(0,1)) # ic 卡状态
         list.append(generator.random_dpm_name()) #部门名称
@@ -30,7 +30,7 @@ def increase_usr_data(filename,entry):
         list.append(admin)#登陆名 和密码
         list.append(admin)
         list.append(generator.rand_num_int(1,100)) #优先级
-        list.append(None) #privilege
+        list.append(generator.random_authority()) #privilege
         list.append(generator.random_usbkey())#usbkey
         user_data.append(list)
 

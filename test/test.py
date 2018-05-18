@@ -185,8 +185,16 @@ def random_user_add(filename,entry):
 
 
 
+def bitOperation():
+    print(1<<0)  #中控设备 1
+    print(1 <<4) #IC卡管理 16
+    print(1 << 5) #状态日志 32
+    print(1 << 8) #音频广播 256
+    print(1 << 9) #ip呼叫权限 512
+    print(1 << 16) #物联设备控制 65536
+def test():
+    auth_data  = [1,16,32,256,512]
 
 
 if __name__ =='__main__':
-   # writeTest()
-    random_user_add()
+            pass

@@ -2,6 +2,8 @@
 # -*- coding: utf-8 -*-
 import random
 from faker import Factory
+import time
+import datetime
 '''
     random data generator
 '''
@@ -83,6 +85,32 @@ def random_usbkey(max = 6):
         list.append(str(random.randint(0,9)))
     return ''.join(list)
 
+def random_authority():
+    auth_data = [0,1, 16, 32, 256, 512]
+    ##中控设备 1  #IC卡管理 16  #状态日志 32
+    #音频广播 256  #ip呼叫权限 512  #物联设备控制 65536
+    #x = random.randint(0,5)
+    list =random.sample(auth_data,random.randint(0,5))
+    if sum(list) == 0:
+        return None
+    else:
+        return sum(list)
+
+def random_date_generation():
+    testnow = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+    time1 = (2018,1,1,0,0,0,0,0,0)
+    time2 = (2018,12,31,23,59,59,0,0,0)
+    start = time.mktime(time1)
+    end = time.mktime(time2)
+    #t  = random.randint(start,end)
+    #date = time.localtime(t)
+    #date1 =time.strftime('%Y-%m-%d %H:%M:%S',date)
+    date = time.localtime(random.randint(start,end))
+    return time.strftime('%Y-%m-%d %H:%M:%S',date)
+
+
+
 def test():
     print(random_phone_number())
     print(random_name())
@@ -100,7 +128,7 @@ def test():
 
 
 if __name__ == '__main__':
-    pass
+    random_date_generation()
 
 
 
