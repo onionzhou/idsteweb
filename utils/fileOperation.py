@@ -46,16 +46,33 @@ class ExcelRead():
             if type(self.sheet) not in [int,str]:
                 raise SheetTypeError('sheet only support type(int) or type(str)')
             elif type(self.sheet) == int:
-                sheetfile = file.sheet_by_index(self.sheet)
+                data_sheet = file.sheet_by_index(self.sheet)
             else:
-                sheetfile = file.sheet_by_name(self.sheet)
+                data_sheet = file.sheet_by_name(self.sheet)
         if self.title_line:
-            title = sheetfile.row_values(0) #title  return list
-            for i in range(1,sheetfile.nrows):
-                self._data.append(dict(zip(title,sheetfile.row_values(i))))
+            title = data_sheet.row_values(0) #title  return list
+            for row in range(1,data_sheet.nrows):
+                templist =[]
+                for col in range(data_sheet.ncols):
+                    if data_sheet.cell_type(row,col) == 2:
+                        templist.append(int(data_sheet.cell_value(row,col)))
+                        #self._data.append(dict(zip(title, int(data_sheet.cell_type(row,col)))))
+                    else:
+                        templist.append(data_sheet.cell_value(row, col))
+                self._data.append(dict(zip(title,templist)))
+                #print(templist)
+            #for col in range(1,data_sheet.nrows):
+            #self._data.append(dict(zip(title, data_sheet.row_values(col))))
         else:
-            for i in range(1,sheetfile.nrows):
-                self._data.append(sheetfile.row_values(i))
+            for row in range(1,data_sheet.nrows):
+                templist = []
+                for col in range(data_sheet.ncols):
+                    if data_sheet.cell_type(row,col) == 2 : # 2  is number 
+                        templist.append(int(data_sheet.cell_value(row,col)))
+                    else:
+                        templist.append(data_sheet.cell_value(row,col))
+                self._data.append(templist)
+                 #self._data.append(data_sheet.row_values(col))
         return self._data
 
 row0 =['User_Desc','User_Sn','IcCard','User_Type','User_Expiry','Phone',

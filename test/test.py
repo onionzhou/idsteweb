@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import time
-from utils.config import DRIVER_PATH,REPORT_PATH
+from utils.config import DRIVER_PATH,REPORT_PATH,DATA_PATH
 import os
 import requests
 from utils.client import HttpClient
@@ -161,19 +161,19 @@ def random_user_add(filename,entry):
     for i in range(0,entry):
         list = []
         list.append(generator.random_name()) #姓名
-        list.append(generator.rand_num(10)) #学工号
-        list.append(generator.rand_num(10)) #卡号
-        list.append(generator.rand_num_int(1,3)) #用户类型
+        list.append(int(generator.rand_num(10))) #学工号
+        list.append(int(generator.rand_num(10))) #卡号
+        list.append(int(generator.rand_num_int(1,3))) #用户类型
         list.append(None)  #User_Expiry
-        list.append(generator.random_phone_number()) #电话号码
-        list.append(generator.rand_num_int(0,1)) # ic 卡状态
+        list.append(int(generator.random_phone_number())) #电话号码
+        list.append(int(generator.rand_num_int(0,1))) # ic 卡状态
         list.append(generator.random_dpm_name()) #部门名称
         admin =generator.random_str(6,8).lower()
         list.append(admin)#登陆名 和密码
         list.append(admin)
-        list.append(generator.rand_num_int(1,100)) #优先级
+        list.append(int(generator.rand_num_int(1,100))) #优先级
         list.append(None) #privilege
-        list.append(generator.random_usbkey())#usbkey
+        list.append(int(generator.random_usbkey()))#usbkey
         user.append(list)
 
     #data wirte
@@ -182,9 +182,6 @@ def random_user_add(filename,entry):
         for j in range(len(user[i])):
             f.write_test(i,j,user[i][j])
     f.save()
-
-
-
 def bitOperation():
     print(1<<0)  #中控设备 1
     print(1 <<4) #IC卡管理 16
@@ -192,9 +189,23 @@ def bitOperation():
     print(1 << 8) #音频广播 256
     print(1 << 9) #ip呼叫权限 512
     print(1 << 16) #物联设备控制 65536
-def test():
-    auth_data  = [1,16,32,256,512]
+from utils.fileOperation import ExcelRead
+import json
+def  readdata():
+    path = DATA_PATH + r'\userdata.xls'
+    #print(path)
+    #dict ={}
 
-
+    d =ExcelRead(path,title_line=False).data()
+    #dict['user'] =d[0]
+    print(json.dumps({'data':{'user':d[0]}}))
+    #print(type(json.dumps(d[0])))
+    #print(dict)
+def insert_task():
+    for time in range(24):
+        # "INSERT INTO `nccs`.`PlaySessionTime` (`SessionID`, `WeekDay`, `PlayTime`, `TempFlag`) VALUES ('2', '0', '2012-03-03 16:30:00', '0');
+        print("insert into `nccs`.`PlaySessionTime` (`SessionID`, `WeekDay`, `PlayTime`, `TempFlag`) VALUES ('3', '0', '2012-03-03 %02d:30:00', '0');" % (time))
 if __name__ =='__main__':
-            pass
+    readdata()
+    #insert_task()
+
