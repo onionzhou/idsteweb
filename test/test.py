@@ -193,14 +193,9 @@ from utils.fileOperation import ExcelRead
 import json
 def  readdata():
     path = DATA_PATH + r'\userdata.xls'
-    #print(path)
-    #dict ={}
-
-    d =ExcelRead(path,title_line=False).data()
-    #dict['user'] =d[0]
+    d =ExcelRead(path,title_line=True).data()
     print(json.dumps({'data':{'user':d[0]}}))
-    #print(type(json.dumps(d[0])))
-    #print(dict)
+
 def insert_task():
     for time in range(24):
         # "INSERT INTO `nccs`.`PlaySessionTime` (`SessionID`, `WeekDay`, `PlayTime`, `TempFlag`) VALUES ('2', '0', '2012-03-03 16:30:00', '0');

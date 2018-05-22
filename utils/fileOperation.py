@@ -67,7 +67,7 @@ class ExcelRead():
             for row in range(1,data_sheet.nrows):
                 templist = []
                 for col in range(data_sheet.ncols):
-                    if data_sheet.cell_type(row,col) == 2 : # 2  is number 
+                    if data_sheet.cell_type(row,col) == 2 : # 2  is number
                         templist.append(int(data_sheet.cell_value(row,col)))
                     else:
                         templist.append(data_sheet.cell_value(row,col))

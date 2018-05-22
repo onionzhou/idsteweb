@@ -19,19 +19,19 @@ def increase_usr_data(filename,entry):
     for i in range(0,entry):
         list = []
         list.append(generator.random_name()) #姓名
-        list.append(int(generator.rand_num(10))) #学工号
-        list.append(int(generator.rand_num(10))) #卡号
+        list.append(generator.rand_num(10)) #学工号
+        list.append(generator.rand_num(10)) #卡号
         list.append(int(generator.rand_num_int(1,3))) #用户类型
         list.append(generator.random_date_generation())  #User_Expiry
-        list.append(int(generator.random_phone_number())) #电话号码
+        list.append(generator.random_phone_number()) #电话号码
         list.append(int(generator.rand_num_int(0,1))) # ic 卡状态
         list.append(generator.random_dpm_name()) #部门名称
         admin =generator.random_str(6,8).lower()
         list.append(admin)#登陆名 和密码
         list.append(admin)
         list.append(int(generator.rand_num_int(1,100))) #优先级
-        list.append(generator.random_authority()) #privilege
-        list.append(int(generator.random_usbkey()))#usbkey
+        list.append(int(generator.random_authority())) #privilege
+        list.append(generator.random_usbkey())#usbkey
         user_data.append(list)
 
     #data wirte

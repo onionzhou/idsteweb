@@ -91,11 +91,13 @@ def random_authority():
     #音频广播 256  #ip呼叫权限 512  #物联设备控制 65536
     #x = random.randint(0,5)
     list =random.sample(auth_data,random.randint(0,5))
+    return sum(list)
+    '''
     if sum(list) == 0:
-        return None
+        return 0
     else:
         return sum(list)
-
+    '''
 def random_date_generation():
     testnow = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
@@ -108,8 +110,6 @@ def random_date_generation():
     #date1 =time.strftime('%Y-%m-%d %H:%M:%S',date)
     date = time.localtime(random.randint(start,end))
     return time.strftime('%Y-%m-%d %H:%M:%S',date)
-
-
 
 def test():
     print(random_phone_number())

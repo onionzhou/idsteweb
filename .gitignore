@@ -6,4 +6,5 @@
 *.pyc
 *.exe
 data/*
+log/*
 __pycache__
