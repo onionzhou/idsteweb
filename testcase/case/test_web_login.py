@@ -11,11 +11,11 @@ class TestWebLogin(unittest.TestCase):
     def setUp(self):
         self.driver = webdriver.Chrome(executable_path=DRIVER_PATH + '\chromedriver.exe')
         self.driver.get(self.url)
-        #self.wait = WebDriverWait(self.driver, 4)
+        self.wait = WebDriverWait(self.driver, 4)
     def tearDown(self):
         self.driver.quit()
     def testLogin(self):
-        #self.wait.until(lambda test: test.find_element(By.CLASS_NAME, 'el-input'))
+        self.wait.until(lambda test: test.find_element(By.CLASS_NAME, 'login-btn'))
         t =self.driver.find_elements(By.CLASS_NAME,'el-input__inner')
         t[0].send_keys('admin') #账号
         t[1].send_keys('admin') #密码

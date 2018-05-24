@@ -199,8 +199,9 @@ def  readdata():
 def insert_task():
     for time in range(24):
         # "INSERT INTO `nccs`.`PlaySessionTime` (`SessionID`, `WeekDay`, `PlayTime`, `TempFlag`) VALUES ('2', '0', '2012-03-03 16:30:00', '0');
-        print("insert into `nccs`.`PlaySessionTime` (`SessionID`, `WeekDay`, `PlayTime`, `TempFlag`) VALUES ('3', '0', '2012-03-03 %02d:30:00', '0');" % (time))
+        print("insert into `nccs`.`PlaySessionTime` (`SessionID`, `WeekDay`, `PlayTime`, `TempFlag`) VALUES ('2', '4', '2012-03-03 %02d:00:00', '0');" % (time))
+
 if __name__ =='__main__':
-    readdata()
-    #insert_task()
+    #readdata()
+    insert_device()
 
