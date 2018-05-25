@@ -57,6 +57,60 @@ def case5():
     # wait = WebDriverWait(driver, 4)
     # wait.until(EC.presence_of_element_located((By.CSS_SELECTOR,'div.copyright-info')))
     # wait.until(lambda test: test.find_element(By.CSS_SELECTOR, 'div.copyright-info'))
+def case6():
+    pass
+    #操作面板开机关机
+    # 用名字查找设备，名字需保持唯一
+    # t = driver.find_elements(By.CSS_SELECTOR, 'div.text-wrap :first-child')
+    # for i in range(len(t)):
+    #     if t[i].text == 'onion2onion':
+    #         time.sleep(1)
+    #         t[i].click()  #选中onion2onion
+    #-----------------------------------------------------
+    #         get panle basic ctrl  |power on /off | prj open | pc open|forbidden
+    #         panel_control[0-4] , 0 禁用 1 开机 2 关机 3.投影仪  4 电脑
+            # panel_control = driver.find_element(By.CSS_SELECTOR, 'div.panel-content :nth-child(1)'). \
+            #     find_elements(By.CSS_SELECTOR, 'div.ctrl-item')
+    # panel_control[1].click()
+    #-----------------------------------------------------------
+    '''
+               # brd button
+                control=driver.find_element(By.CSS_SELECTOR,'div.panel-content').\
+                    find_elements(By.CSS_SELECTOR,'div.panel-item')
+                brd_control=control[1]
+               # 广播按钮
+               # brd_control.find_element(By.CSS_SELECTOR,'button').click()
+                #音频控制
+                # brd_control.find_element(By.CSS_SELECTOR,'div.volume-slider').\
+                #     find_element(By.CSS_SELECTOR,'button').click()
+                #音频滚动条拖动
+
+                action = ActionChains(driver)
+                bar = control[1].find_element(By.CSS_SELECTOR,'div.volume-slider').\
+                    find_element(By.CSS_SELECTOR,'div.el-slider__button')
+                action.drag_and_drop_by_offset(bar,100,00).perform()
+
+                #麦克风控制
+                #brd_control.find_element(By.CSS_SELECTOR, 'div.mic-slider').\
+                    find_element(By.CSS_SELECTOR,'button').click()
+                #麦克风滚动条控制
+                mic_bar= control[1].find_element(By.CSS_SELECTOR,'div.mic-slider').\
+                    find_element(By.CSS_SELECTOR,'div.el-slider__button')
+                action.drag_and_drop_by_offset(mic_bar, 100, 00).perform()
+                '''
+def case7():
+    pass
+    #语言
+    # driver.find_element(By.CSS_SELECTOR, 'button.lang-setting').click()
+    # s = driver.find_elements(By.CSS_SELECTOR, "ul.el-dropdown-menu")[1].find_elements(By.CSS_SELECTOR, 'li')
+    # for i in range(len(s)):
+    #     print(s[i].text)
+    #用户中心
+    # driver.find_element(By.CSS_SELECTOR, 'button.user-info').click()
+    # r = driver.find_elements(By.CSS_SELECTOR, "ul.el-dropdown-menu")[1].find_elements(By.CSS_SELECTOR, 'li')
+    # for i in range(len(r)):
+    #     print(r[i].text)
+
 def test1():
     driver = webdriver.Chrome(executable_path=DRIVER_PATH+'\chromedriver.exe')
     driver.get(url)
@@ -71,9 +125,13 @@ def test1():
     #显示等待 两种形式
     #wait.until(EC.presence_of_element_located((By.CSS_SELECTOR,'div.copyright-info')))
     wait.until(lambda test: test.find_element(By.CSS_SELECTOR, 'div.copyright-info'))
-    r =driver.find_elements(By.CSS_SELECTOR,'span.el-checkbox__inner')
-    r[2].click()
-    print(len(r))
+    driver.find_element(By.CSS_SELECTOR,'button.user-info').click()
+    driver.find_elements(By.CSS_SELECTOR,"ul.el-dropdown-menu")[1].\
+        find_elements(By.CSS_SELECTOR,'li')[0].click() #修改用户资料
+    #add use info
+    list =driver.find_element(By.CSS_SELECTOR,'form.userinfo-form :nth-child(3)').\
+        find_element(By.CSS_SELECTOR,'div.el-input')
+    print(list.text)
     time.sleep(4)
     #driver.quit()
 if __name__ =='__main__':
