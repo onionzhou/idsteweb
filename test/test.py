@@ -203,5 +203,5 @@ def insert_task():
 
 if __name__ =='__main__':
     #readdata()
-    insert_device()
+    pass
 

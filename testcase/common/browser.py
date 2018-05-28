@@ -1,4 +1,6 @@
 from  selenium import webdriver
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.common.action_chains import ActionChains
 import os
 from utils.config import DRIVER_PATH,REPORT_PATH
 import time
@@ -28,7 +30,7 @@ class Browser(object):
             raise UnsupprtBrowerTypeError('only support [ %s' % ', '.join(TYPES.keys()), ']')
         self.driver = None
 
-    def get(self,url,maximize_window =True,time_to_implicitly_wait =20):
+    def get(self,url,maximize_window =True,time_to_implicitly_wait =5):
         self.driver = self.browser(executable_path=EXE_PATH[self._type])
         self.driver.get(url)
         if maximize_window:
@@ -36,6 +38,10 @@ class Browser(object):
         #这里可以增加显示等待功能，以后补充
         self.driver.implicitly_wait(time_to_implicitly_wait)
         return self
+
+    def wait(self,time):
+        return WebDriverWait(self.driver,time)
+
     def save_screen_shot(self, name ='screen_xx'):
         day =time.strftime('%Y%m%d', time.localtime(time.time()))
         screenshot_path = REPORT_PATH +'\screenshot_%s' %day

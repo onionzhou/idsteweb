@@ -15,10 +15,13 @@ class Config():
     def get (self,element,index = 0):
         return self.config[index].get(element)
 
+
+
 if __name__ == '__main__':
-    print(DATA_PATH)
-    url = Config().get('TEST4')
+    url = Config().get('URL')
     print(url)
-    print(DRIVER_PATH +'\cc')
-    print(LOG_PATH)
+    c = Config().get('log')
+    x =c.get('file_name')
+    print(x)
+
 
