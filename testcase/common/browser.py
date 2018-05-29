@@ -42,6 +42,7 @@ class Browser(object):
     def wait(self,time):
         return WebDriverWait(self.driver,time)
 
+
     def save_screen_shot(self, name ='screen_xx'):
         day =time.strftime('%Y%m%d', time.localtime(time.time()))
         screenshot_path = REPORT_PATH +'\screenshot_%s' %day
@@ -57,6 +58,9 @@ class Browser(object):
 
     def close(self):
         self.driver.close()
+
+    def refresh(self):
+        self.driver.refresh()
 
 if __name__ == '__main__':
     b = Browser(browser_type='chrome').get('http://192.168.1.113')

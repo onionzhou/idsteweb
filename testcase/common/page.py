@@ -17,9 +17,11 @@ class Page(browser.Browser):
 
 import time
 if __name__ == '__main__':
-    driver = Page().get('https://192.168.1.113/')
+    driver = Page()
+    driver.get('https://192.168.1.113/')
     time.sleep(5)
-    t=driver.find_elements(By.CLASS_NAME,'el-input__inner')
+    x =(By.CLASS_NAME,'el-input__inner')
+    t=driver.find_elements(*x)
     t[0].send_keys('onion')  # 账号
     t[1].send_keys('onion')  # 密码
     driver.find_element(By.CLASS_NAME, 'login-btn').click()
