@@ -3,8 +3,11 @@
 import unittest
 from testcase.common.common import *
 from testcase.common.page import Page
-from selenium.webdriver.common.by import By
+from utils.HTMLTestRunner import HTMLTestRunner
+from utils.config import REPORT_PATH
+from utils.mail import Eamil
 import time
+
 class TestWebDeviceCtrl(unittest.TestCase):
     url = 'http://192.168.1.113/'
     @classmethod
@@ -44,10 +47,28 @@ class TestWebDeviceCtrl(unittest.TestCase):
             find_elements(*panel_item)
         panel_control[2].click()
 
-
 if __name__ =='__main__':
     suite = unittest.TestSuite()
     suite.addTest(TestWebDeviceCtrl('testOpenCtrl'))
     suite.addTest(TestWebDeviceCtrl('testCloseCtrl'))
-    runner = unittest.TextTestRunner()
-    runner.run(suite)
+    # runner = unittest.TextTestRunner()
+    # runner.run(suite)
+    file = REPORT_PATH + '/report.html'
+    with open(file, 'wb') as f:
+        runner = HTMLTestRunner(f, title='idsteWebTestReport', verbosity=1,
+                                description='HtmlTestRunner support py3')
+        runner.run(suite)
+    #email send
+    '''
+    e = Eamil(title='web设备开关机测试报告',
+              message='设备测试报告请查看附件',
+              sender='sender@163.com',
+              s_password='senderpasswd',
+              # recipient=['xxxxxx@qq.com','xxxxx@foxmail.com'],
+              recipient=['recevice@163.com'],
+              annex=[file],
+              server='smtp.exmail.qq.com',
+              )
+
+    e.send()
+    '''

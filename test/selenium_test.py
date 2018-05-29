@@ -7,6 +7,7 @@ from utils.config import DRIVER_PATH
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support import expected_conditions as EC
 import time
+import unittest
 url = "https://192.168.1.113/"
 def case1():
     pass
@@ -134,5 +135,18 @@ def test1():
     print(list.text)
     time.sleep(4)
     #driver.quit()
+def test2():
+    driver = webdriver.Chrome(executable_path=DRIVER_PATH + '\chromedriver.exe')
+    driver.get(url)
+    wait = WebDriverWait(driver, 4, 0.5)
+    wait.until(lambda test: test.find_element(By.CLASS_NAME, 'login-btn'))
+    t = driver.find_elements(By.CLASS_NAME, 'el-input__inner')
+    t[0].send_keys('')  # 账号
+    t[1].send_keys('onion')  # 密码
+    driver.find_element(By.CLASS_NAME, 'login-btn').click()
+    wait.until(lambda test: test.find_element(By.CSS_SELECTOR,'div.el-message'))
+    print(driver.find_element(By.CSS_SELECTOR,'div.el-message').text)
+
+
 if __name__ =='__main__':
-    test1()
+    test2()

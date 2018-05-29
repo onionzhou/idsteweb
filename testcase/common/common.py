@@ -15,3 +15,5 @@ all_dev_name =(By.CSS_SELECTOR, 'div.text-wrap :first-child')
 #面板区域获取
 panel_body =(By.CSS_SELECTOR, 'div.panel-content :nth-child(1)')
 panel_item =(By.CSS_SELECTOR, 'div.ctrl-item')
+#error element
+login_error =(By.CSS_SELECTOR,'div.el-message')

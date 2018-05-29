@@ -14,6 +14,15 @@ class Page(browser.Browser):
         return self.driver.find_element(*args)
     def find_elements(self,*args):
         return self.driver.find_elements(*args)
+    def is_element_exist(self,*args):
+        try:
+            self.driver.find_element(*args)
+            return True
+        except Exception as e:
+            return False
+
+
+
 
 import time
 if __name__ == '__main__':

@@ -2,7 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>idste interface login test</title>
+    <title>idsteWebTestReport</title>
     <meta name="generator" content="HTMLTestRunner 0.8.2"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
@@ -218,12 +218,12 @@ function showOutput(id, name) {
 --></script>
 
 <div class='heading'>
-<h1>idste interface login test</h1>
-<p class='attribute'><strong>Start Time:</strong> 2018-05-11 13:34:18</p>
-<p class='attribute'><strong>Duration:</strong> 0:00:00.002000</p>
-<p class='attribute'><strong>Status:</strong> Error 1</p>
+<h1>idsteWebTestReport</h1>
+<p class='attribute'><strong>Start Time:</strong> 2018-05-29 16:32:04</p>
+<p class='attribute'><strong>Duration:</strong> 0:00:12.461741</p>
+<p class='attribute'><strong>Status:</strong> Pass 2</p>
 
-<p class='description'>interface html report</p>
+<p class='description'>HtmlTestRunner support py3</p>
 </div>
 
 <div style="float:left; margin-left: 10px;">
@@ -262,55 +262,31 @@ function showOutput(id, name) {
     <td>View</td>
 </tr>
 
-<tr class='errorClass'>
-    <td>TestiDsteLogin</td>
-    <td>1</td>
+<tr class='passClass'>
+    <td>TestWebDeviceCtrl</td>
+    <td>2</td>
+    <td>2</td>
     <td>0</td>
     <td>0</td>
-    <td>1</td>
-    <td><a href="javascript:showClassDetail('c1',1)">Detail</a></td>
+    <td><a href="javascript:showClassDetail('c1',2)">Detail</a></td>
 </tr>
 
-<tr id='ft1.1' class='none'>
-    <td class='errorCase'><div class='testcase'>test_login_http</div></td>
-    <td colspan='5' align='center'>
+<tr id='pt1.1' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testOpenCtrl</div></td>
+    <td colspan='5' align='center'>pass</td>
+</tr>
 
-    <!--css div popup start-->
-    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft1.1')" >
-        error</a>
-
-    <div id='div_ft1.1' class="popup_window">
-        <div style='text-align: right; color:red;cursor:pointer'>
-        <a onfocus='this.blur();' onclick="document.getElementById('div_ft1.1').style.display = 'none' " >
-           [x]</a>
-        </div>
-        <pre>
-        
-ft1.1: Traceback (most recent call last):
-  File "F:/python/idsteweb/testcase/interface/test_idste_login.py", line 13, in setUp
-    self.client = HttpClient(url =self.url)
-  File "F:\python\idsteweb\utils\client.py", line 23, in __init__
-    self.setHeaders(headers)
-  File "F:\python\idsteweb\utils\client.py", line 27, in setHeaders
-    self.session.headers.update(headers)
-  File "C:\Python35\lib\_collections_abc.py", line 780, in update
-    for key, value in other:
-TypeError: 'NoneType' object is not iterable
-
-
-        </pre>
-    </div>
-    <!--css div popup end-->
-
-    </td>
+<tr id='pt1.2' class='hiddenRow'>
+    <td class='none'><div class='testcase'>testCloseCtrl</div></td>
+    <td colspan='5' align='center'>pass</td>
 </tr>
 
 <tr id='total_row'>
     <td>Total</td>
-    <td>1</td>
-    <td class="text text-success">0</td>
+    <td>2</td>
+    <td class="text text-success">2</td>
     <td class="text text-danger">0</td>
-    <td class="text text-warning">1</td>
+    <td class="text text-warning">0</td>
     <td>&nbsp;</td>
 </tr>
 </table>
@@ -320,7 +296,7 @@ TypeError: 'NoneType' object is not iterable
     <script type="text/javascript">
 var data = [
 	{
-		value: 1,
+		value: 0,
 		color: "#ebccd1",
 		label: "Error",
 		labelColor: 'white',
@@ -334,7 +310,7 @@ var data = [
 		labelFontSize: '16'
 	},
 	{
-		value : 0,
+		value : 2,
 		color : "#d6e9c6",
 		label : "Pass",
 		labelColor: 'white',
