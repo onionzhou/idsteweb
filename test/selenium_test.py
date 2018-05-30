@@ -111,6 +111,17 @@ def case7():
     # r = driver.find_elements(By.CSS_SELECTOR, "ul.el-dropdown-menu")[1].find_elements(By.CSS_SELECTOR, 'li')
     # for i in range(len(r)):
     #     print(r[i].text)
+def test2():
+    driver = webdriver.Chrome(executable_path=DRIVER_PATH + '\chromedriver.exe')
+    driver.get(url)
+    wait = WebDriverWait(driver, 4, 0.5)
+    wait.until(lambda test: test.find_element(By.CLASS_NAME, 'login-btn'))
+    t = driver.find_elements(By.CLASS_NAME, 'el-input__inner')
+    t[0].send_keys('')  # 账号
+    t[1].send_keys('onion')  # 密码
+    driver.find_element(By.CLASS_NAME, 'login-btn').click()
+    wait.until(lambda test: test.find_element(By.CSS_SELECTOR,'div.el-message'))
+    print(driver.find_element(By.CSS_SELECTOR,'div.el-message').text)
 
 def test1():
     driver = webdriver.Chrome(executable_path=DRIVER_PATH+'\chromedriver.exe')
@@ -135,18 +146,56 @@ def test1():
     print(list.text)
     time.sleep(4)
     #driver.quit()
-def test2():
+
+def test3():
     driver = webdriver.Chrome(executable_path=DRIVER_PATH + '\chromedriver.exe')
     driver.get(url)
     wait = WebDriverWait(driver, 4, 0.5)
     wait.until(lambda test: test.find_element(By.CLASS_NAME, 'login-btn'))
     t = driver.find_elements(By.CLASS_NAME, 'el-input__inner')
-    t[0].send_keys('')  # 账号
+    t[0].send_keys('onion')  # 账号
     t[1].send_keys('onion')  # 密码
     driver.find_element(By.CLASS_NAME, 'login-btn').click()
-    wait.until(lambda test: test.find_element(By.CSS_SELECTOR,'div.el-message'))
-    print(driver.find_element(By.CSS_SELECTOR,'div.el-message').text)
+    # -----------------------------------------------------------------
+    # time.sleep(4)
+    # 显示等待 两种形式
+    # wait.until(EC.presence_of_element_located((By.CSS_SELECTOR,'div.copyright-info')))
+    wait.until(lambda test: test.find_element(By.CSS_SELECTOR, 'div.copyright-info'))
+
+    t = driver.find_elements(By.CSS_SELECTOR, 'div.text-wrap :first-child')
+    for i in range(len(t)):
+        if t[i].text == 'onion2onion':
+            time.sleep(1)
+            t[i].click()  #选中onion2onion
+    # 修改配置 (By.CSS_SELECTOR,'i.fa')
+    # 日志 (By.CSS_SELECTOR,'i.el-icon-document')
+    # 删除 (By.CSS_SELECTOR,'i.el-icon-delete')
+    # 刷新 By.CSS_SELECTOR,'i.el-icon-refresh'
+    driver.find_element(By.CSS_SELECTOR,'div.el-button-group').\
+       find_element(By.CSS_SELECTOR,'i.fa').click()
+    time.sleep(1)
+    #修改配置 --
+    # 系统 (By.CSS_SELECTOR,'div#tab-sys')
+    #视频 (By.CSS_SELECTOR,'div#tab-running')
+    # 音频 (By.CSS_SELECTOR,'div#tab-vol')
+    # 监控 (By.CSS_SELECTOR,'div#tab-moni')
+    #driver.find_element(By.CSS_SELECTOR,'div#tab-running').click()
+    #-----------------------
+    #系统修改配置
+    # driver.find_element(By.CSS_SELECTOR,'input#devname').clear()#设备名称
+    # driver.find_element(By.CSS_SELECTOR,'input#address').clear() #物理位置
+    # driver.find_element(By.CSS_SELECTOR,'input#brd-turnoff-delay').clear()#音频输入延迟\
+    # driver.find_element(By.CSS_SELECTOR, 'input#brd-turnoff-delay').send_keys('55')
+    t =driver.find_elements(By.CSS_SELECTOR,'label.title')
+    for i in range(len(t)):
+        #print(t[i].text)
+        if t[i].text == '开机方式':
+            driver.find_element(By.CSS_SELECTOR,'div.el-input').click()
+
+
+
+
 
 
 if __name__ =='__main__':
-    test2()
+    test3()

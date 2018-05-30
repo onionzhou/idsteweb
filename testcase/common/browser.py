@@ -42,7 +42,6 @@ class Browser(object):
     def wait(self,time):
         return WebDriverWait(self.driver,time)
 
-
     def save_screen_shot(self, name ='screen_xx'):
         day =time.strftime('%Y%m%d', time.localtime(time.time()))
         screenshot_path = REPORT_PATH +'\screenshot_%s' %day

@@ -16,7 +16,9 @@ class Page(browser.Browser):
         return self.driver.find_elements(*args)
     def is_element_exist(self,*args):
         try:
-            self.driver.find_element(*args)
+            WebDriverWait(self.driver,2).until_not(
+                EC.presence_of_element_located((By.ID),*args)
+            )
             return True
         except Exception as e:
             return False
