@@ -147,6 +147,10 @@ def test1():
     time.sleep(4)
     #driver.quit()
 
+
+def is_checked(driver, item):
+    checked = driver.execute_script(("return document.getElementBy('%s').checked") % item)
+    return checked
 def test3():
     driver = webdriver.Chrome(executable_path=DRIVER_PATH + '\chromedriver.exe')
     driver.get(url)
@@ -184,13 +188,50 @@ def test3():
     #系统修改配置
     # driver.find_element(By.CSS_SELECTOR,'input#devname').clear()#设备名称
     # driver.find_element(By.CSS_SELECTOR,'input#address').clear() #物理位置
-    # driver.find_element(By.CSS_SELECTOR,'input#brd-turnoff-delay').clear()#音频输入延迟\
-    # driver.find_element(By.CSS_SELECTOR, 'input#brd-turnoff-delay').send_keys('55')
-    t =driver.find_elements(By.CSS_SELECTOR,'label.title')
-    for i in range(len(t)):
-        #print(t[i].text)
-        if t[i].text == '开机方式':
-            driver.find_element(By.CSS_SELECTOR,'div.el-input').click()
+    driver.find_element(By.CSS_SELECTOR,'input#brd-turnoff-delay').clear()#音频输入延迟\
+    driver.find_element(By.CSS_SELECTOR, 'input#brd-turnoff-delay').send_keys('55')
+
+    # t [0] 开机方式   t[1] 分辨率选择
+    # t =driver.find_element(By.CSS_SELECTOR,'div.sys-conf').find_elements(By.CSS_SELECTOR,'div.el-select')
+    # t[0].click() # 点击开机方式
+    #选择开机方式
+    # items=driver.find_elements(By.CSS_SELECTOR,'li.el-select-dropdown__item')
+    # for i in range(len(items)):
+    #     if items[i].text == '面板':
+    #        print('got it panel')
+    #     elif items[i].text == '插卡':
+    #         items[i].click()
+
+    #、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、、
+    #联动开关机选择
+    # driver.find_element(By.CSS_SELECTOR,'div.sys-checkbox :first-child').click()
+    #用 nth-child(2) 选择电脑报错？？元素不可见？？？
+    #driver.find_element(By.CSS_SELECTOR,'div.sys-checkbox :nth-child(2)').click()
+    #选择电脑
+    # driver.find_element(By.CSS_SELECTOR,'div.sys-checkbox').\
+    #     find_elements(By.CSS_SELECTOR,'label.el-checkbox')[1].click()
+
+    #、、、、、、、、、、、、、、、、、、、、、、、、、、、、、
+
+    # chek box choose
+    # 0 投影仪  1 电脑  2 麦克风 3 分辨率内置 4 hdmi 内置  5 视屏亮度增强
+    # x=driver.find_element(By.CSS_SELECTOR, 'div.sys-conf').\
+    #     find_elements(By.CSS_SELECTOR, 'span.el-checkbox__inner')[3].click()
+    # for i in range(len(x)):
+    #     print(i)
+    # 1 取消  2 保存
+
+    x = driver.find_element(By.CSS_SELECTOR, 'div.sys-conf'). \
+            find_elements(By.CSS_SELECTOR, 'span.el-checkbox__inner')[3]
+    #driver.find_element(By.CSS_SELECTOR,'div.submit-btns :nth-child(1)').click()
+    # driver.find_element(By.CSS_SELECTOR, 'div.submit-btns :nth-child(2)').click()
+
+
+    driver.quit()
+
+
+
+
 
 
 
