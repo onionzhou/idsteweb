@@ -28,7 +28,9 @@ class Browser(object):
             self.browser = TYPES[self._type]
         else:
             raise UnsupprtBrowerTypeError('only support [ %s' % ', '.join(TYPES.keys()), ']')
+
         self.driver = None
+
 
     def get(self,url,maximize_window =True,time_to_implicitly_wait =5):
         self.driver = self.browser(executable_path=EXE_PATH[self._type])
@@ -37,7 +39,7 @@ class Browser(object):
             self.driver.maximize_window()
         #这里可以增加显示等待功能，以后补充
         self.driver.implicitly_wait(time_to_implicitly_wait)
-        return self
+        return self.driver
 
     def wait(self,time):
         return WebDriverWait(self.driver,time)
@@ -62,7 +64,8 @@ class Browser(object):
         self.driver.refresh()
 
 if __name__ == '__main__':
-    b = Browser(browser_type='chrome').get('http://192.168.1.113')
+    b = Browser(browser_type='chrome')
+    b.get('http://192.168.1.113')
     b.save_screen_shot()
     time.sleep(3)
     b.quit()

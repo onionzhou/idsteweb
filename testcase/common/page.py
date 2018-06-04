@@ -14,11 +14,11 @@ class Page(browser.Browser):
         return self.driver.find_element(*args)
     def find_elements(self,*args):
         return self.driver.find_elements(*args)
-    # def is_Selected(self,*args):
-    #     return self.driver.find_elements(*args).isSelected()
-    # def is_checked(self,driver, item):
-    #     checked = driver.execute_script(("return document.getElementBy('%s').checked") % item)
-    #     return checked
+    def is_Selected(self,*args):
+        return self.driver.find_elements(*args).isSelected()
+    def is_checked(self,driver, item):
+        checked = driver.execute_script(("return document.getElementBy('%s').checked") % item)
+        return checked
 
     def is_element_exist(self,*args):
         try:
