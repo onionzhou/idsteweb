@@ -5,10 +5,11 @@ import unittest
 from testcase.common.page import Page
 from testcase.common.common import *
 import time
+from utils.config import Config
 
 class DevConfModification(unittest.TestCase):
-    url = 'https://192.168.1.113/'
-    dev_name = 'onion2onion'
+    url = Config().get('URL')
+    dev_name = 'onion'
 
     @classmethod
     def setUpClass(cls):

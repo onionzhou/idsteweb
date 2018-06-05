@@ -7,9 +7,10 @@ from utils.HTMLTestRunner import HTMLTestRunner
 from utils.config import REPORT_PATH
 from utils.mail import Eamil
 import time
+from utils.config import Config
 
 class TestWebDeviceCtrl(unittest.TestCase):
-    url = 'http://192.168.1.113/'
+    url = Config().get('URL')
     @classmethod
     def setUpClass(cls):
         cls.driver = Page()
@@ -34,7 +35,7 @@ class TestWebDeviceCtrl(unittest.TestCase):
     def ChooseCtrl(self):
         dev_names= self.driver.find_elements(*all_dev_name)
         for i in range(len(dev_names)):
-            if dev_names[i].text == 'onion2onion':
+            if dev_names[i].text == 'onion':
                 time.sleep(1)
                 dev_names[i].click()
     def testOpenCtrl(self):

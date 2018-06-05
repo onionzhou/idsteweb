@@ -7,9 +7,9 @@ from selenium.webdriver.support.wait import WebDriverWait
 from utils.config import DRIVER_PATH
 from testcase.common.page import Page
 from testcase.common.locators import LoginPageLocators
-import time
+from utils.config import Config
 class TestWebLogin(unittest.TestCase):
-    url = 'https://192.168.1.113/'
+    url = Config().get('URL')
     @classmethod
     def setUpClass(cls):
         cls.driver = Page()
@@ -25,6 +25,8 @@ class TestWebLogin(unittest.TestCase):
     def login(self,user,passwd):
         self.driver.wait(4).until(lambda test: test.find_element(*LoginPageLocators.login_button))
         t = self.driver.find_elements(*LoginPageLocators.input)
+        t[0].clear()
+        t[1].clear()
         t[0].send_keys(user)  # 账号
         t[1].send_keys(passwd)  # 密码
         self.driver.find_element(*LoginPageLocators.login_button).click()
@@ -33,7 +35,7 @@ class TestWebLogin(unittest.TestCase):
         self.login('','onion')
         self.driver.wait(4).until(lambda test: test.find_element(*LoginPageLocators.login_error))
         err_message =self.driver.find_element(*LoginPageLocators.login_error).text
-        self.assertEqual(u'请输入用户名',err_message,msg=None)
+        self.assertEqual('请输入用户名',err_message,msg=None)
 
     def testLoginUserError(self):
         self.login('onion*onion', 'onion')
