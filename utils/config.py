@@ -18,10 +18,11 @@ class Config():
 
 
 if __name__ == '__main__':
-    url = Config().get('URL')
-    print(url)
-    c = Config().get('log')
-    x =c.get('file_name')
-    print(x)
+    print(DATA_PATH)
+    # url = Config().get('URL')
+    # print(url)
+    # c = Config().get('log')
+    # x =c.get('file_name')
+    # print(x)
 
 

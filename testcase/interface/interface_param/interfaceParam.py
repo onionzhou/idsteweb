@@ -15,6 +15,6 @@ class InterfaceData(object):
     url_data = ExcelRead(url_file, title_line=True).data()
     payload['data'] =url_data[0]
     login_data = payload
+
 if __name__ == '__main__':
-    x = InterfaceData
-    print(x.login_data)
+   pass

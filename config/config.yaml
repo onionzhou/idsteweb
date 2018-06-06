@@ -1,4 +1,4 @@
-URL: https://192.168.1.251/
+URL: https://192.168.0.104/
 log:
     file_name : idstetest.log
     backup : 5

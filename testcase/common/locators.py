@@ -23,7 +23,33 @@ class DevPageLocators(object):
 
 class TaskPageLocators(object):
     ''' 任务页面定位器'''
-    pass
+
+    el_main =(By.CSS_SELECTOR,'main.el-main')
+    #新建
+    create_task =(By.CSS_SELECTOR,'div.el-button-group :nth-child(1)')
+    #创建
+    brd_task =(By.CSS_SELECTOR, 'div.bd-task')
+
+    task_name =(By.CSS_SELECTOR,'div.name-input')
+    name_input =(By.CSS_SELECTOR,'input.el-input__inner')
+    # 0 强制接收 1 静音 2 视频 3 随机 4 全选设备
+    check_boxs =(By.CSS_SELECTOR,'span.el-checkbox__inner')
+    #时间编辑
+    date_editor =(By.CSS_SELECTOR,'div.el-date-editor')
+    date_input =(By.CSS_SELECTOR,'input.el-input__inner')
+    #添加媒体文件和设置执行时间按钮组
+    radio_group =(By.CSS_SELECTOR,'div.el-radio-group')
+    radio_buttons =(By.CSS_SELECTOR,'label.el-radio-button')
+    #媒体文件按钮组
+    # 0 添加  1 删除 2 上移 3 下移
+    media_btn_group =(By.CSS_SELECTOR,'div.table-btn-group')
+    media_btns =(By.CSS_SELECTOR,'button.el-button')
+
+    #save and cancel btn
+    save_cancel_group=(By.CLASS_NAME,'footer')
+    save_cancel_btns =(By.CSS_SELECTOR,'button.el-button')
+
+
 
 class MediaPageLocators(object):
     '''媒体页面定位器'''

@@ -232,6 +232,48 @@ def test3():
 
 
 
+def task_page():
+    driver = webdriver.Chrome(executable_path=DRIVER_PATH + '\chromedriver.exe')
+    driver.get("https://192.168.0.104")
+    wait = WebDriverWait(driver, 4, 0.5)
+    wait.until(lambda test: test.find_element(By.CLASS_NAME, 'login-btn'))
+    t = driver.find_elements(By.CLASS_NAME, 'el-input__inner')
+    t[0].send_keys('admin')  # 账号
+    t[1].send_keys('admin')  # 密码
+    driver.find_element(By.CLASS_NAME, 'login-btn').click()
+    time.sleep(2)
+    driver.find_element(By.CSS_SELECTOR, 'ul.el-menu :nth-child(2)').click()
+    # -------------------------------------------------------------------------------
+    time.sleep(2)
+    driver.find_element(By.CSS_SELECTOR,'main.el-main').\
+        find_element(By.CSS_SELECTOR,'div.el-button-group :nth-child(1)').click()
+    time.sleep(2)
+    bd_task =driver.find_element(By.CSS_SELECTOR,'div.bd-task')
+    time.sleep(2)
+
+    bd_task.find_elements(By.CSS_SELECTOR,'input.el-input__inner')[0].send_keys('111')
+    #任务名称
+    # bd_task.find_element(By.CSS_SELECTOR,'div.name-input').\
+    #     find_element(By.CSS_SELECTOR,'input.el-input__inner').send_keys('111')
+    #checkbox
+    x =bd_task.find_elements(By.CSS_SELECTOR,'span.el-checkbox__inner')
+    for i in range(len(x)):
+        x[i].click()
+    time.sleep(2)
+    #时间编辑
+    bd_task.find_element(By.CSS_SELECTOR,'div.el-date-editor').click()
+    time.sleep(1)
+    bd_task.find_element(By.CSS_SELECTOR,'div.el-date-editor').find_element(By.CSS_SELECTOR,'input.el-input__inner').clear()
+    bd_task.find_element(By.CSS_SELECTOR,'div.el-date-editor').find_element(By.CSS_SELECTOR,'input.el-input__inner').send_keys('2222')
+
+    bd_task.find_element(By.CSS_SELECTOR,'div.table-btn-group').find_elements(By.CSS_SELECTOR,'button.el-button')[0].click()
+
+
+    time.sleep(1)
+    # x.click()
+    # x.clear()
+    # x.send_keys('111111')
+    driver.quit()
 
 
 
@@ -239,4 +281,4 @@ def test3():
 
 
 if __name__ =='__main__':
-    test3()
+    task_page()
