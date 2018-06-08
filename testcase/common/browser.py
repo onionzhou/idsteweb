@@ -39,7 +39,7 @@ class Browser(object):
             self.driver.maximize_window()
         #这里可以增加显示等待功能，以后补充
         self.driver.implicitly_wait(time_to_implicitly_wait)
-        return self.driver
+        return self
 
     def wait(self,time):
         return WebDriverWait(self.driver,time)

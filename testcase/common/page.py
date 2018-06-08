@@ -8,8 +8,11 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support import expected_conditions as EC
 from testcase.common import browser
 class Page(browser.Browser):
-    def __init__(self):
-        self.driver = super(Page,self).__init__()
+    def __init__(self,page=None,browser_type='chrome'):
+        if page:
+            self.driver =page.driver
+        else:
+            self.driver = super(Page,self).__init__(browser_type=browser_type)
     def find_element(self,*args):
         return self.driver.find_element(*args)
     def find_elements(self,*args):

@@ -23,7 +23,7 @@ class TestWebLogin(unittest.TestCase):
         self.driver.wait(2).until_not(lambda test:test.find_element(*LoginPageLocators.login_error))
 
     def login(self,user,passwd):
-        self.driver.wait(4).until(lambda test: test.find_element(*LoginPageLocators.login_button))
+        self.driver.wait(2).until(lambda test: test.find_element(*LoginPageLocators.login_button))
         t = self.driver.find_elements(*LoginPageLocators.input)
         t[0].clear()
         t[1].clear()
