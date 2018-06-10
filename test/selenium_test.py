@@ -279,6 +279,11 @@ def task_page():
 
 
 
-
+from testcase.page.idsteLogin import IDsteWebLogin
+class xxxx():
+    def xx(self):
+        self.page = IDsteWebLogin()
+        self.page.test_print()
 if __name__ =='__main__':
-    task_page()
+    x=xxxx()
+    x.xx()

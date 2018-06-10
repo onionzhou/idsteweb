@@ -8,4 +8,6 @@
 data/*
 log/*
 __pycache__
-config/
+.idea/
+config/*
+
