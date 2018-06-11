@@ -234,39 +234,48 @@ def test3():
 
 def task_page():
     driver = webdriver.Chrome(executable_path=DRIVER_PATH + '\chromedriver.exe')
-    driver.get("https://192.168.0.104")
+    driver.get("https://192.168.1.113")
     wait = WebDriverWait(driver, 4, 0.5)
     wait.until(lambda test: test.find_element(By.CLASS_NAME, 'login-btn'))
     t = driver.find_elements(By.CLASS_NAME, 'el-input__inner')
-    t[0].send_keys('admin')  # 账号
-    t[1].send_keys('admin')  # 密码
+    t[0].send_keys('onion')  # 账号
+    t[1].send_keys('onion')  # 密码
     driver.find_element(By.CLASS_NAME, 'login-btn').click()
     time.sleep(2)
-    driver.find_element(By.CSS_SELECTOR, 'ul.el-menu :nth-child(2)').click()
+    driver.find_element(By.CSS_SELECTOR, 'ul.el-menu :nth-child(2)').click() #选中任务模块
     # -------------------------------------------------------------------------------
     time.sleep(2)
+    #新建任务
     driver.find_element(By.CSS_SELECTOR,'main.el-main').\
         find_element(By.CSS_SELECTOR,'div.el-button-group :nth-child(1)').click()
     time.sleep(2)
     bd_task =driver.find_element(By.CSS_SELECTOR,'div.bd-task')
     time.sleep(2)
-
-    bd_task.find_elements(By.CSS_SELECTOR,'input.el-input__inner')[0].send_keys('111')
-    #任务名称
-    # bd_task.find_element(By.CSS_SELECTOR,'div.name-input').\
-    #     find_element(By.CSS_SELECTOR,'input.el-input__inner').send_keys('111')
-    #checkbox
+    # 任务名称
+    bd_task.find_element(By.CSS_SELECTOR,'div.name-input').\
+        find_element(By.CSS_SELECTOR,'input.el-input__inner').send_keys('111')
+    # checkbox  0 强制接收 1 静音  2.视频 3.静音播放 4.全部
     x =bd_task.find_elements(By.CSS_SELECTOR,'span.el-checkbox__inner')
-    for i in range(len(x)):
-        x[i].click()
-    time.sleep(2)
+    # x[0].click
+    # for i in range(len(x)):
+    #     x[i].click()
+    # time.sleep(2)
     #时间编辑
     bd_task.find_element(By.CSS_SELECTOR,'div.el-date-editor').click()
     time.sleep(1)
     bd_task.find_element(By.CSS_SELECTOR,'div.el-date-editor').find_element(By.CSS_SELECTOR,'input.el-input__inner').clear()
-    bd_task.find_element(By.CSS_SELECTOR,'div.el-date-editor').find_element(By.CSS_SELECTOR,'input.el-input__inner').send_keys('2222')
+    bd_task.find_element(By.CSS_SELECTOR,'div.el-date-editor').find_element(By.CSS_SELECTOR,'input.el-input__inner').send_keys('01:00:00')
+    bd_task.click()
+    time.sleep(1)
+    #添加媒体文件 0 设置执行时间 1
+    aa=bd_task.find_element(By.CSS_SELECTOR,'div.el-radio-group').\
+        find_elements(By.CSS_SELECTOR,'label.el-radio-button')
+    print(len(aa))
+    aa[0].click()
 
-    bd_task.find_element(By.CSS_SELECTOR,'div.table-btn-group').find_elements(By.CSS_SELECTOR,'button.el-button')[0].click()
+    #添加 删除 上移 下移  button组
+    # bd_task.find_element()
+
 
 
     time.sleep(1)
@@ -276,14 +285,5 @@ def task_page():
     driver.quit()
 
 
-
-
-
-from testcase.page.idsteLogin import IDsteWebLogin
-class xxxx():
-    def xx(self):
-        self.page = IDsteWebLogin()
-        self.page.test_print()
 if __name__ =='__main__':
-    x=xxxx()
-    x.xx()
+    task_page()

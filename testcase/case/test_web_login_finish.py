@@ -35,9 +35,8 @@ class TestWebLogin(unittest.TestCase):
         self.page.login('onion','')
         self.assertEqual(u'请输入密码',self.page.err_message() , msg=None)
 
-
-    # def testLoginSucess(self):
-    #     self.page.login('onion', 'onion')
+    def testLoginSucess(self):
+        self.page.login('onion', 'onion')
 
 if __name__ =='__main__':
     # unittest.main()
