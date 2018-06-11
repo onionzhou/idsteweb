@@ -231,10 +231,10 @@ def test3():
 
 
 
-
+from selenium.webdriver.common.keys import Keys
 def task_page():
     driver = webdriver.Chrome(executable_path=DRIVER_PATH + '\chromedriver.exe')
-    driver.get("https://192.168.1.113")
+    driver.get("https://192.168.0.104")
     wait = WebDriverWait(driver, 4, 0.5)
     wait.until(lambda test: test.find_element(By.CLASS_NAME, 'login-btn'))
     t = driver.find_elements(By.CLASS_NAME, 'el-input__inner')
@@ -251,6 +251,7 @@ def task_page():
     time.sleep(2)
     bd_task =driver.find_element(By.CSS_SELECTOR,'div.bd-task')
     time.sleep(2)
+
     # 任务名称
     bd_task.find_element(By.CSS_SELECTOR,'div.name-input').\
         find_element(By.CSS_SELECTOR,'input.el-input__inner').send_keys('111')
@@ -267,21 +268,58 @@ def task_page():
     bd_task.find_element(By.CSS_SELECTOR,'div.el-date-editor').find_element(By.CSS_SELECTOR,'input.el-input__inner').send_keys('01:00:00')
     bd_task.click()
     time.sleep(1)
+
     #添加媒体文件 0 设置执行时间 1
     aa=bd_task.find_element(By.CSS_SELECTOR,'div.el-radio-group').\
         find_elements(By.CSS_SELECTOR,'label.el-radio-button')
-    print(len(aa))
-    aa[0].click()
+    aa[1].click()
+    #设置时间的添加按钮
+    bd_task.find_element(By.CSS_SELECTOR,'div.el-card__body'). \
+        find_element(By.CSS_SELECTOR, 'button.el-button').click()
+    #获取定时任务时间列表
+    time_list=bd_task.find_element(By.CSS_SELECTOR,'div.el-card__body').\
+        find_elements(By.CSS_SELECTOR,'tr.el-table__row')
+    #时间调整
+    time_list[0].find_element(By.CSS_SELECTOR,'input.el-input__inner').clear()
+    time_list[0].find_element(By.CSS_SELECTOR,'input.el-input__inner').send_keys('11:23:11')
+    time_list[0].find_element(By.CSS_SELECTOR,'input.el-input__inner').send_keys(Keys.ENTER)
 
-    #添加 删除 上移 下移  button组
-    # bd_task.find_element()
+    #正常 插播按钮
+    time_list[0].find_element(By.CSS_SELECTOR, 'div.el-switch').click()
+    #全选
+    # time_list[0].find_element(By.CSS_SELECTOR, 'div.checkout-box').click()
+    #周1 to 周日 单选
+    s =time_list[0].find_element(By.CSS_SELECTOR, 'div.el-checkbox-group').\
+        find_elements(By.CSS_SELECTOR,'label.weekday')
+
+    print(len(s))
+    s[2].click()
+    s[4].click()
+    #删除 time
+    # time_list[0].find_element(By.CSS_SELECTOR,'button.el-button--danger').click()
 
 
+    '''
+    #添加 0 删除 1  上移 2下移 3   button组
+    bd_task.find_element(By.CSS_SELECTOR,'div.table-btn-group').\
+        find_elements(By.CSS_SELECTOR,'button.el-button')[0].click()
 
-    time.sleep(1)
-    # x.click()
-    # x.clear()
-    # x.send_keys('111111')
+    #媒体库添加窗口
+    add_media =driver.find_elements(By.CSS_SELECTOR,'div.el-dialog')[1]
+    #获取媒体文件列表
+    x =add_media.find_element(By.CSS_SELECTOR, 'div.el-dialog__body').\
+        find_elements(By.CSS_SELECTOR,'tr.el-table__row')
+    x[0].click()
+    #确认按钮
+    add_media.find_element(By.CSS_SELECTOR,'div.el-dialog__body').\
+        find_element(By.CSS_SELECTOR,'button.el-button').click()
+    '''
+
+    #定时任务确定 取消按钮
+    # driver.find_element(By.CSS_SELECTOR,'div.footer :first-child').click()
+    driver.find_element(By.CSS_SELECTOR,'div.footer').find_elements(By.CSS_SELECTOR,'button.el-button')[0].click()
+    driver.find_element(By.CSS_SELECTOR,'div.footer').find_elements(By.CSS_SELECTOR,'button.el-button')[1].click()
+    time.sleep(5)
     driver.quit()
 
 
