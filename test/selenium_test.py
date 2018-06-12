@@ -273,7 +273,8 @@ def task_page():
     aa=bd_task.find_element(By.CSS_SELECTOR,'div.el-radio-group').\
         find_elements(By.CSS_SELECTOR,'label.el-radio-button')
     aa[1].click()
-    #设置时间的添加按钮
+
+    #设置执行时间的添加按钮
     bd_task.find_element(By.CSS_SELECTOR,'div.el-card__body'). \
         find_element(By.CSS_SELECTOR, 'button.el-button').click()
     #获取定时任务时间列表
