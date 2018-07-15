@@ -1,7 +1,6 @@
-* pip3 install selenium 
-* pip3 install pyyaml
-* pip3 install xlrd  //处理Excel表格
-* pip3 install requests
-* pip3 install jmespath
-* pip3 install xlwd  //excel 表格写入库
-* pip3 install xlutils // excel 表格处理库
+
+适用于 web R6.0 自动化测试
+支持UI 自动化 
+支持接口测试
+支持邮件发送
+支持测试报告自动生成
