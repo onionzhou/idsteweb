@@ -6,25 +6,26 @@ from utils.client import HttpClient
 from utils.Log import logger
 from utils.HTMLTestRunner import HTMLTestRunner
 from utils.assertion import assertHTTPCode
-from testcase.interface.interface_param.interfaceParam import InterfaceURL
-from testcase.interface.interface_param.interfaceParam import InterfaceData
+from testcase.interface.interface_param.interfaceParam import *
+# from testcase.interface.interface_param.interfaceParam import InterfaceData
 
 class TestiDsteLogin(unittest.TestCase):
-
+    url = InterfaceURL()
+    data = InterfaceData()
     def setUp(self):
-        self.client = HttpClient(url =InterfaceURL.login_url)
+        self.client = HttpClient(url =self.url)
     def tearDown(self):
         pass
     def test_login_http(self):
-        res = self.client.send(params=InterfaceData.login_data)
-        logger.debug(res.text)
-        #self.assertEqual(200,res.status_code)
-        assertHTTPCode(res)
+        res = self.client.send(params=self.data[0])
+        # logger.debug(res.text)
+        self.assertEqual(200,res.status_code)
+        # assertHTTPCode(res)
     def test_login_http_404(self):
-        res = self.client.send()
-        logger.debug(res.text)
-        #self.assertEqual(200,res.status_code)
-        assertHTTPCode(res,404)
+        res = self.client.send(params=self.data[1])
+        # logger.debug(res.text)
+        self.assertEqual(200,res.status_code)
+        # assertHTTPCode(res,404)
 
 def test_main():
     report = REPORT_PATH + '\\interfacereport.html'

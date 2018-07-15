@@ -323,6 +323,26 @@ def task_page():
     time.sleep(5)
     driver.quit()
 
-
+from testcase.common.locators import MainLocators,TaskPageLocators,LoginPageLocators,LeftTaskPageLocators
+def manul_task():
+    driver = webdriver.Chrome(executable_path=DRIVER_PATH + '\chromedriver.exe')
+    driver.get("https://192.168.0.104")
+    driver.maximize_window()
+    wait = WebDriverWait(driver, 4, 0.5)
+    wait.until(lambda test: test.find_element(By.CLASS_NAME, 'login-btn'))
+    t = driver.find_elements(By.CLASS_NAME, 'el-input__inner')
+    t[0].send_keys('admin')  # 账号
+    t[1].send_keys('admin')  # 密码
+    driver.find_element(By.CLASS_NAME, 'login-btn').click()
+    time.sleep(2)
+    driver.find_element(By.CSS_SELECTOR, 'ul.el-menu :nth-child(2)').click()  # 选中任务模块
+    # -----------------------
+    driver.find_element(By.CSS_SELECTOR,'div.left-menu').\
+        find_elements(By.CSS_SELECTOR,'li.el-menu-item')[1].click()
+    driver.find_element(*TaskPageLocators.el_main).find_element(*TaskPageLocators.create_task).click()
+    time.sleep(3)
+    driver.find_element(By.CSS_SELECTOR,'div.el-tabs__nav').find_element(By.ID,'tab-1').click()
+    time.sleep(3)
+from testcase.interface.interface_param.interfaceParam import *
 if __name__ =='__main__':
-    task_page()
+    print(InterfaceURL())

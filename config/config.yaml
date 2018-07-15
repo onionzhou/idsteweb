@@ -1,0 +1,10 @@
+URL: https://192.168.0.104/
+log:
+    file_name : idstetest.log
+    backup : 5
+    console_level: WARNING
+    file_level: DEBUG
+    pattern : '%(asctime)s - %(filename)s -%(name)s - %(levelname)s - %(message)s'
+
+
+

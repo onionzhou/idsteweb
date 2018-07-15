@@ -74,6 +74,6 @@ if __name__ == '__main__':
 
     #ssl._create_default_https_context = ssl._create_unverified_context
     #r =requests.get(url='https://192.168.1.223',verify=False)
-    r = HttpClient(url='https://192.168.1.223/', method='GET').send()
+    r = HttpClient(url='https://192.168.1.104/', method='GET').send()
     print(r.text)
     #print(respone.text)

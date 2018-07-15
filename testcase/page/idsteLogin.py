@@ -6,8 +6,6 @@ import time
 
 
 class IDsteWebLogin(browser.Browser,):
-    # phone_input = (By.CLASS_NAME,'el-input__inner')
-    # login_button = (By.CLASS_NAME,'login-btn')
     def __init__(self,page=None,browser_type='chrome'):
         if page:
             self.driver = page.driver
